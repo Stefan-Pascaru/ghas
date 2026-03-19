@@ -1,0 +1,19 @@
+## .NET build artifacts
+bin/
+obj/
+
+## SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+## User-specific files
+*.user
+*.suo
+
+## VS/Rider settings
+.vs/
+.idea/
+
+## dotnet publish output
+publish/

@@ -13,6 +13,7 @@ namespace ProductsApi.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Name", "Description", "Price", "Inventory" },
+                columnTypes: new[] { "nvarchar(max)", "nvarchar(max)", "decimal(18,2)", "int" },
                 values: new object[,]
                 {
                     { "Laptop Pro 15", "High-performance laptop with 15-inch display", 1299.99m, 50 },

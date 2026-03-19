@@ -11,4 +11,30 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Product> Products { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<CustomerProductPrice> CustomerProductPrices { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<CustomerProductPrice>()
+            .HasKey(cpp => new { cpp.CustomerId, cpp.ProductId });
+
+        modelBuilder.Entity<CustomerProductPrice>()
+            .HasOne(cpp => cpp.Customer)
+            .WithMany(c => c.CustomerProductPrices)
+            .HasForeignKey(cpp => cpp.CustomerId);
+
+        modelBuilder.Entity<CustomerProductPrice>()
+            .HasOne(cpp => cpp.Product)
+            .WithMany()
+            .HasForeignKey(cpp => cpp.ProductId);
+
+        modelBuilder.Entity<CustomerProductPrice>()
+            .Property(cpp => cpp.AgreedPrice)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<Product>()
+            .Property(p => p.Price)
+            .HasPrecision(18, 2);
+    }
 }

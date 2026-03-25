@@ -1,3 +1,3 @@
-# ghas f2
+# f2
 
 new read me test file
